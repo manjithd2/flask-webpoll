@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Web Poll</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link href="static/bootstrap.min.css" rel="stylesheet" media="screen">
+</head>
+<body>
+<div class="container" style="margin-top:50px">
+ <div class="text-center" style="margin-bottom:20px"><h3 >RESULTS</h3></div>
+ <div class="progress">
+  <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="{{opt1}}"
+  aria-valuemin="0" aria-valuemax="100" style="width:{{opt1}}%">
+    Option 1 
+  </div>
+</div>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="{{opt2}}"
+  aria-valuemin="0" aria-valuemax="100" style="width:{{opt2}}%">
+    Option 2
+  </div>
+</div>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="{{opt3}}"
+  aria-valuemin="0" aria-valuemax="100" style="width:{{opt3}}%">
+    Option 3
+  </div>
+</div>
+
+<div class="progress">
+  <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="{{opt4}}"
+  aria-valuemin="0" aria-valuemax="100" style="width:{{opt4}}%">
+    Option 4
+  </div>
+</div>
+</div>
+
+<p class="text-center">Go to <a href="/">home</a>
+</body>
+</html>

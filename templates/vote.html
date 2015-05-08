@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+ 
+{% block content %}
+  <h2>Contact</h2>
+  <form action="{{ url_for('vote') }}" method=post>
+    {{ form.hidden_tag() }}
+    
+    {{ form.opt1.label }}
+    {{ form.opt1(value='opt1') }}
+    <br>
+    {{ form.opt2.label }}
+    {{ form.opt2(value='opt2') }}
+    <br>
+    {{ form.opt3.label }}
+    {{ form.opt3(value='opt3') }}
+    <br> 
+    {{ form.opt4.label }}
+    {{ form.opt4(value='burn') }}
+    <br>
+    {{ form.submit }}
+  </form>
+{% endblock %}

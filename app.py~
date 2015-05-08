@@ -1,0 +1,116 @@
+from flask import *
+from flask_wtf import Form
+from flask.ext.sqlalchemy import SQLAlchemy
+from wtforms import StringField
+from wtforms.validators import DataRequired
+from forms import ContactForm
+import sqlite3
+
+
+DATABASE = 'voting.db'
+SECRET_KEY = 'wat'
+
+app = Flask(__name__)
+ 
+app.config.from_object(__name__)
+
+def connect_db():
+  return sqlite3.connect(app.config['DATABASE'])
+
+@app.route("/")
+def home():
+	return render_template("home.html")
+
+@app.route('/contact', methods=['GET', 'POST'])
+def contact():
+  form = ContactForm()
+ 
+  if request.method == 'POST':
+      g.db = connect_db()
+      k= request.form.get('kick')
+      w= request.form.get('whip')
+      s= request.form.get('slap')
+      b= request.form.get('burn')
+      if k== 'kick':
+        g.db.execute("INSERT INTO vote VALUES('kick')")
+        if w=='whip':
+          g.db.execute("INSERT INTO vote VALUES('whip')")
+
+          if s=='slap':
+            g.db.execute("INSERT INTO vote VALUES('slap')")
+
+
+          if b=='burn':
+            g.db.execute("INSERT INTO vote VALUES('burn')")
+
+
+
+        elif s=='slap':
+          g.db.execute("INSERT INTO vote VALUES('slap')")
+          
+          if b=='burn':
+            g.db.execute("INSERT INTO vote VALUES('burn')")
+          
+      
+        elif b=='burn':
+          g.db.execute("INSERT INTO vote VALUES('burn')")
+
+    elif w=='whip':
+        g.db.execute("INSERT INTO vote VALUES('whip')")
+        
+        if s=='slap':
+        g.db.execute("INSERT INTO vote VALUES('slap')")
+
+      
+        elif b=='burn':
+        g.db.execute("INSERT INTO vote VALUES('burn')")
+
+
+    elif s=='slap':
+        g.db.execute("INSERT INTO vote VALUES('slap')")
+        elif b=='burn':
+        g.db.execute("INSERT INTO vote VALUES('burn')")
+
+
+      
+    elif b=='burn':
+        g.db.execute("INSERT INTO vote VALUES('burn')")
+
+  
+      g.db.commit()
+      g.db.close()
+
+  elif request.method == 'GET':
+    return render_template('contact.html', form=form)
+
+  return render_template("home.html")
+
+@app.route("/rand")
+def rand():
+	return "hello world"
+
+
+@app.route("/result")
+def result():
+  g.db= connect_db()
+  cur=g.db.execute('select * from vote')
+  j = [dict(casts=row[0]) for row in cur.fetchall()]
+  g.db.close()
+  return repr(j)
+
+
+
+#@app.route('/usern', methods=('GET', 'POST'))
+#def usern(request):
+   # form = MyForm(request.POST)
+    #if request.method == 'POST':
+     #   return redirect('/')
+    #return render_template('home.html', form=form)
+
+
+@app.route("/<username>")
+def user(username):
+	return username
+
+if __name__ == "__main__":
+	app.run(debug=True)
