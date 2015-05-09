@@ -32,15 +32,14 @@ def vote():
       s= request.form.get('opt3')
       b= request.form.get('opt4')
       
-      for i in range (0,1):
-        if k== 'opt1':
-          g.db.execute("INSERT INTO vote VALUES('opt1')")
-        if w=='opt2':
-          g.db.execute("INSERT INTO vote VALUES('opt2')")
-        if s=='opt3':
-            g.db.execute("INSERT INTO vote VALUES('opt3')")
-        if b=='opt4':
-            g.db.execute("INSERT INTO vote VALUES('opt4')")
+      if k== 'opt1':
+        g.db.execute("INSERT INTO vote VALUES('opt1')")
+      if w=='opt2':
+        g.db.execute("INSERT INTO vote VALUES('opt2')")
+      if s=='opt3':
+        g.db.execute("INSERT INTO vote VALUES('opt3')")
+      if b=='opt4':
+        g.db.execute("INSERT INTO vote VALUES('opt4')")
         
      
       g.db.commit()
